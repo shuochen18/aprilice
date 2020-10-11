@@ -1,0 +1,22 @@
+{
+  "name": "solarproject",
+  "version": "1.0.0",
+  "description": "Visualize of solar pavement on the roof based on google map api.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuochen18/aprilice.git"
+  },
+  "author": "shuo chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuochen18/aprilice/issues"
+  },
+  "homepage": "https://github.com/shuochen18/aprilice#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

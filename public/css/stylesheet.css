@@ -1,0 +1,244 @@
+     /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+       #map {
+        height: 100%;
+        margin-bottom: 50px;
+        float: left;
+        display: inline;
+     }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .wrap-map{
+        margin-left: 20px;
+      }
+
+      .bgcontain{
+        height: 100vh;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+      .pac-holder{
+        display:flex;
+      }
+      .pac-left{
+        width: 50%; 
+        height: 100vh;
+        position: relative;
+      }
+      .hidden{
+        display: none;
+      }
+      div .overlay{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.7;
+        z-index: 1;
+      }
+      
+      div.overlay.standard { background: #fff url("https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif") no-repeat 50% 50%; }
+      
+      .pac-right{
+        width: 50%; 
+        height: 100vh;
+      }
+      .list-info{
+        margin: 8px 0;
+        font-size: medium;
+      }
+      label{
+        min-width: 200px;
+      }
+
+      .input-prepend{
+        height: 80%;
+        display: grid;
+        padding: 0em 5em 0px 7em;
+        align-content: center;
+      }
+
+      .fph1{
+        font-size: 4.3vw;
+        font-weight: 300;
+        margin: 0px;
+      }
+      .fpp{
+        font-size: 1.8vw;
+        font-weight: 200;
+        margin-top: 28px;
+        padding-bottom: 30px;
+      }
+
+      #pac-container {
+        display: flex;
+        padding: 0 50px;
+        color: #fff;
+        font-size: 50px;
+        font-weight: bolder;
+        font-family: 'Times New Roman', Times, serif;
+        align-items: center;
+      }
+
+      #pac-container h5{
+        font-size: 20px;
+        margin-bottom: 50px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      #pac-input {
+         height: 35px;
+         width: 24vw;
+         padding: 0.6em;
+         font-size: 1.5em;
+         font-family: "Beausite Classic";
+         border-radius: 5em;
+         border:1px solid;
+         outline:none;
+         box-sizing: content-box;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .progresspart{
+        height: 20%;
+        align-content: center;
+        display: grid;
+        row-gap: 20px;
+        padding: 0px 5em;
+      }
+
+      .probar{
+        width: 99%;
+        border-radius: 5em;
+        background-color: rgb(186,186,186);
+      }
+      .probarinside{
+        border:2px solid black;
+        width: 20%;
+        border-radius: 5em;
+
+      }
+      .btnblock{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .backbtn{
+        width: 133px;
+        height: 55px;
+        background-color: white;
+        font-family: "Beausite Classic";
+        font-size: 18px;
+        font-weight: 400;
+        border: 1px solid rgb(0,0,0);
+        border-radius: 56px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .nextbtn{
+        width: 133px;
+        height: 55px;
+        background-color: black;
+        color: white;
+        font-family: "Beausite Classic";
+        font-size: 18px;
+        font-weight: 400;
+        border: 1px solid rgb(0,0,0);
+        border-radius: 56px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .expobutton{
+        width: 70px;
+        height: 30px;
+        background-color: black;
+        color: white;
+        font-family: "Beausite Classic";
+        font-size: 18px;
+        font-weight: 400;
+        border: 1px solid rgb(0,0,0);
+        outline: none;
+        cursor: pointer;
+        right: 0;
+      }
+
+      .map-contents{
+        vertical-align: top;
+        min-width: 1300px;
+      }
+      .wrap-printout{
+        padding: 10px;
+        font-size: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 100px;
+        margin-left: 20px;
+        font-size: large;
+        float: left;
+        display: inline;
+      }
+
+      #power{
+        margin-bottom: 10px;
+      }
+      .fadee{
+        opacity: 100;
+        transition: opacity .15s linear;
+      }
+
+      .displayclue{
+        font-size: 20px;
+        border: black 4px;
+        margin: 10px 0;
+        width: 900px;
+      }
+      .modal-body{
+        font-size: 13px;
+      }
+      .query{
+        /* font-weight: bold; */
+       font-family: Poppins, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+       font-size: 25px;
+      }
+      .solartype{
+        margin-top: 20px;
+      }
