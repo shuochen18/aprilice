@@ -12,7 +12,6 @@ var address='';
 
 document.addEventListener('DOMContentLoaded', function() {
 	display("wrap-premap")
-
 	document.getElementById("ntbtn").addEventListener('click', function(e){
 		console.log("nextbtn",step)
 		let totalstep=9;
@@ -196,8 +195,8 @@ function gotostep(step){
 	}
 
 	if(step===8){
-		let tcount=0;
-		let tpower=0;
+		var tcount=0;
+		var tpower=0;
 		buildingshapes.map(build=>{
 			tcount+=build.count;
 			let col = parseInt(build.heading/20);
@@ -212,8 +211,9 @@ function gotostep(step){
 				<p>Antal paneler: ${tcount}</p>
 				<p>Aktuell effekt: ${tpower.toFixed(2)} kWh per år</p>
 			</div>
-			<div><button class="expobutton" id="epbtn" onclick="exportpdf(address, buildingshapes)">Export</button></div>
+			<div><button class="expobutton" id="epbtn"">Export</button></div>
 			`;
+		document.getElementById("epbtn").addEventListener('click',()=>exportpdf(address, buildingshapes,tcount, tpower));
 	}
 
 

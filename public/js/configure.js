@@ -1,3 +1,4 @@
+// remote pwd 3kDk51
 var margin = 100; // margin from the boundary rectangle, also the first search stride
 const AREALIMIT = 1000; // square meters
 
