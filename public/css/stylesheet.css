@@ -74,8 +74,12 @@
         height: 100vh;
       }
       .list-info{
-        margin: 8px 0;
-        font-size: medium;
+        margin-top: 2vw;
+        font-size: 1.5vw;
+      }
+
+      .list-info input{
+        min-width: 20vw;
       }
       label{
         min-width: 200px;
@@ -87,14 +91,16 @@
         padding: 0em 5em 0px 7em;
         align-content: center;
       }
-
+      .inputinfo{
+        margin-top:2vw;
+      }
       .fph1{
-        font-size: 4.3vw;
+        font-size: 5vw;
         font-weight: 300;
         margin: 0px;
       }
       .fpp{
-        font-size: 1.8vw;
+        font-size: 2vw;
         font-weight: 200;
         margin-top: 28px;
         padding-bottom: 30px;
@@ -173,6 +179,15 @@
         outline: none;
         cursor: pointer;
       }
+      
+      .nextbtn:hover{
+        background-color: #6d6a6a;
+        color: black;
+      }
+      .backbtn:hover{
+        background-color: #ddd;
+        color: black;
+      }
 
       .nextbtn{
         width: 133px;
@@ -189,9 +204,9 @@
       }
 
       .expobutton{
-        width: 70px;
-        height: 30px;
-        background-color: black;
+        width: 10vw;
+        height: 2.5vw;
+        background-color: #716868;
         color: white;
         font-family: "Beausite Classic";
         font-size: 18px;
@@ -200,8 +215,12 @@
         outline: none;
         cursor: pointer;
         right: 0;
+        border-radius: 0.4vw;
       }
+      .expobutton:hover{
+        background-color: black;
 
+      }
       .map-contents{
         vertical-align: top;
         min-width: 1300px;

@@ -2,6 +2,8 @@
 var exportpdf=function(address, buildingshapes,tcount, tpower){
     var src1 = "../assets/tem1.jpg";
     var src2 = "../assets/tem2.jpg";
+    var status = document.getElementById("dstatus");
+    status.innerText = "  Vänta..."
     Promise.all([tobase64(src1),tobase64(src2)])
     .then((b1b2)=>format(b1b2[0],b1b2[1],address, buildingshapes,tcount, tpower))
 }
@@ -25,7 +27,7 @@ function format(temp1, temp2,address, buildingshapes,tcount, tpower){
     doc.text(`${tcount}`,63,178);
     doc.text(`${buildingshapes.length}`,45,189);
     doc.text(`${out}`,52,200);
-    doc.text(`${tpower}`,72,211);
+    doc.text(`${tpower.toFixed(2)}`,72,211);
     doc.text(`${(tpower*0.013).toFixed(2)} kg`,57,222);
     doc.text(`${(tpower*0.013/6000).toFixed(2)}`,73,233);
 
@@ -41,8 +43,8 @@ function format(temp1, temp2,address, buildingshapes,tcount, tpower){
         var width = doc.internal.pageSize.width;    
         var height = doc.internal.pageSize.height;
         doc.addImage(mapurl, 'PNG', width/4, 75,width/2,height/2);
-        doc.save();
-        console.log("done");
+        doc.save("Aprilice_Report");
+        document.getElementById("dstatus").innerText = "  Avslutad"
     })
 }
 

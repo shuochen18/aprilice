@@ -13,7 +13,6 @@ var address='';
 document.addEventListener('DOMContentLoaded', function() {
 	display("wrap-premap")
 	document.getElementById("ntbtn").addEventListener('click', function(e){
-		console.log("nextbtn",step)
 		let totalstep=9;
 
 		if(step===1 & !currentshape) return
@@ -42,8 +41,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		}
 		if(step===9){
-			alert("Thanks for your infomation!");
-			location.reload();
+			var name = $('#cname')[0].value;
+			var phone = $('#cphone')[0].value;
+			var email = $('#cemail')[0].value;
+			var tcount = 0;
+			buildingshapes.map(build=>{
+				tcount+=build.count;
+			})
+			var reName = /^[a-zA-Z ]*$/;
+			var rePhone = /^[0-9]{5,20}$/;
+			var reEmail=/^(\w+\.?)*\w+@(?:\w+\.)\w+$/;
+			if(!reName.test(name)||name==''){
+				alert("Kontrollera your name!")
+			}
+			else if(!rePhone.test(phone)||phone==''){
+				alert("Kontrollera your telefon!")
+			}
+			else if(!reEmail.test(email)||email==''){
+				alert("Kontrollera your email!")
+			}
+			else{
+				fetch('/api/collectinfo',{
+					method:'POST',
+					body:JSON.stringify({
+						name:name,
+						phone:phone, 
+						email:email,
+						address: address,
+						tcount: tcount
+					}),
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					  }
+				)}).catch((err)=>{alert(`Server error!`);console.log(err)});
+				alert("Tack för din information!");
+				location.reload();
+			}
+
 		}
 		if(step===totalstep) return
 		step++
@@ -108,17 +142,17 @@ function gotostep(step){
 		document.getElementById("h1content").innerHTML=`Detaljer om taket`;
 		document.getElementById("pcontent").innerHTML=
 		`För att räkna ut ett pris behöver vi lite information om taket.
-		<div>
+		<div style="margin-top:2vw;">
 			<div id="usertypeselector">
 				<fieldset>
 					<legend><span class="query">Välj typ av anläggning</span></legend>
 					<div>
 						<input type="radio" id="mode1" name="usertype"
 						value=1 checked>
-						<span for="mode1">Bostad</span>
+						<span for="mode1" style="font-size:1.5vw">Bostad</span>
 						<br/>
 						<input type="radio" id="mode2" name="usertype" value=2>
-						<span for="mode2">Kommersiell fastighet</span>
+						<span for="mode2" style="font-size:1.5vw">Kommersiell fastighet</span>
 						</div>
 						<div>
 					</div>
@@ -138,6 +172,7 @@ function gotostep(step){
 			x==0&&(el.checked="checked");
 			var spel = document.createElement("span");
 			spel.for = x+1;
+			spel.style = 'font-size:1.5vw'
 			spel.innerHTML = ` ${solar[2]} <br/>`;
 			el.name="solartype"
 			dive.append(el);
@@ -167,8 +202,7 @@ function gotostep(step){
 			document.getElementById("h1content").innerHTML=`Justera solcells layout`;
 			document.getElementById("pcontent").innerHTML=
 			`Klicka för att lägga till och ta bort solpaneler, eller ändra markerad takyta genom att flytta punkterna.
-			<p id="currnum"></p>
-			<p id="currpow"></p>
+			<p id="currnum" style="font-size:1.5vw;font-weight:bold;margin-top:2vw"></p>
 			`;
 			document.getElementById("barinside").style.width = "80%";
 			document.getElementById("loader").style.display="none";
@@ -185,11 +219,11 @@ function gotostep(step){
 		document.getElementById("pcontent").innerHTML=
 			`
 			<input type="radio" id="mode1" name="addmore" value=false checked>
-			<span for=1>Nej</span>
-			<br/><br/>
+			<span for=1 style="font-size:1.5vw">Nej</span>
+			<br/>
 			<input type="radio" id="mode2" name="addmore"
 			 value=true>
-			 <span for=2>Ja</span>
+			 <span for=2 style="font-size:1.5vw">Ja</span>
 			`;
 
 	}
@@ -207,11 +241,11 @@ function gotostep(step){
 		document.getElementById("h1content").innerHTML=`Resultat`;
 		document.getElementById("pcontent").innerHTML=
 			`Beräkning av solcellssystem
-			<div id=result>
-				<p>Antal paneler: ${tcount}</p>
-				<p>Aktuell effekt: ${tpower.toFixed(2)} kWh per år</p>
+			<div id=result style="margin-top:2vw;">
+				<p style="font-size: 1.5vw;">Antal paneler: ${tcount}</p>
+				<p style="font-size: 1.5vw;">Aktuell effekt: ${tpower.toFixed(2)} kWh per år</p>
 			</div>
-			<div><button class="expobutton" id="epbtn"">Export</button></div>
+			<div><button class="expobutton" id="epbtn"">Export</button><span id="dstatus"style="font-size:1vw"></span></div>
 			`;
 		document.getElementById("epbtn").addEventListener('click',()=>exportpdf(address, buildingshapes,tcount, tpower));
 	}
@@ -221,11 +255,11 @@ function gotostep(step){
 		document.getElementById("h1content").innerHTML=`Contact Info`;
 		document.getElementById("pcontent").innerHTML=
 			`
-			<form>
-				<div class="list-info"><label>Name:</label><input></div>
-				<div class="list-info"><label>Phone number:</label><input></div>
-				<div class="list-info"><label>Email:</label><input></div>
-			</form>
+			<div class="inputinfo">
+				<div class="list-info"><label>Namn:</label><input id="cname"></div>
+				<div class="list-info"><label>Telefon:</label><input id="cphone"></div>
+				<div class="list-info"><label>Email:</label><input id="cemail"></div>
+			</div>
 			`;
 	}
 	document.getElementById("barinside").style.width = step/totalstep*100+"%";
@@ -293,6 +327,7 @@ function initMap() {
 	  // If the place has a geometry, then present it on a map.
 	  if (place.geometry.viewport) {
 		map.fitBounds(place.geometry.viewport);
+		map.setCenter(place.geometry.location);
 		map.setZoom(25);
 	  } else {
 		map.setCenter(place.geometry.location);

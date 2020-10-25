@@ -1,4 +1,4 @@
-// remote pwd 3kDk51
+// remote pwd 3kDk51, user pwd NordenSweden! , db pwd Ns123456!
 var margin = 100; // margin from the boundary rectangle, also the first search stride
 const AREALIMIT = 1000; // square meters
 
